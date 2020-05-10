@@ -18,7 +18,7 @@ from django.urls import path
 from vacancies.views import CompanyView, MainView, VacancyView
 
 # regex path for combining vacancies/cat/code and vacancies/id
-# re_path(r'^vacancies/(?P<id>\d+)?/?(cat/(?P<code>\w+))?/?', VacancyView.as_view(), name='vacancies')
+# re_path(r'^vacancies/(?P<id>\d+)?/?(cat/(?P<code>\w+))?/$', VacancyView.as_view(), name='vacancies')
 
 
 urlpatterns = [

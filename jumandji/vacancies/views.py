@@ -8,7 +8,6 @@ from .models import Company, Specialty, Vacancy
 
 def my_render(request, html, data):
     data['SITE_NAME'] = SITE_NAME
-
     return render(request, html, data)
 
 
@@ -25,10 +24,9 @@ class MainView(View):
         for c in categories:
             vacancy_count_for_category.append((c, Vacancy.objects.filter(specialty=c).count()))
 
-        return my_render(request, 'vacancies/index.html',
-                      {'companies': vacancy_count_for_company,
-                       'categories': vacancy_count_for_category,
-                       })
+        return my_render(request, 'vacancies/index.html', {'companies': vacancy_count_for_company,
+                                                           'categories': vacancy_count_for_category
+                                                           })
 
 
 class VacancyView(View):
@@ -47,18 +45,14 @@ class VacancyView(View):
         else:
             vacancy = get_object_or_404(Vacancy, id=id)
             path_to_file = 'vacancies/vacancy.html'
-            context = {'vacancy': vacancy, }
+            context = {'vacancy': vacancy}
 
         return my_render(request, path_to_file, context)
 
 
 class CompanyView(View):
     def get(self, request, id):
-        try:
-            company = Company.objects.get(id=id)
-        except Company.DoesNotExist:
-            company = "No such company"
-
+        company = get_object_or_404(Company, id=id)
         vacancies = Vacancy.objects.filter(company=company)
 
         return my_render(request, 'vacancies/company.html', {'company': company, 'vacancies': vacancies})

@@ -25,7 +25,7 @@ SITE_NAME = 'Джуниорджия'
 SECRET_KEY = 'x+t#c8!x1%x32zys7l3r58rsbn!ye6jpx9aw#vq-xtgg7278+e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
